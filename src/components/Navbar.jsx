@@ -1,29 +1,22 @@
-const Navbar = () => {
+const Navbar = ({ setView }) => {
   return (
-    <nav className="container" style={{
-      display:"flex",
-      justifyContent:"space-between",
-      alignItems:"center",
-      padding:"20px 0"
-    }}>
+    <nav className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 0" }}>
       <h2 style={{
-        background:"linear-gradient(90deg,#6C4CF5,#A855F7)",
-        WebkitBackgroundClip:"text",
-        color:"transparent"
+        background: "linear-gradient(90deg,#6C4CF5,#A855F7)",
+        WebkitBackgroundClip: "text",
+        color: "transparent"
       }}>
         DigiTools
       </h2>
-
-      <ul style={{display:"flex", gap:"25px", listStyle:"none"}}>
-        <li>Products</li>
+      <ul style={{ display: "flex", gap: "25px", listStyle: "none" }}>
+        <li onClick={() => setView("products")}>Products</li>
         <li>Features</li>
         <li>Pricing</li>
         <li>FAQ</li>
       </ul>
-
-      <div style={{display:"flex", gap:"10px"}}>
+      <div style={{ display: "flex", gap: "10px" }}>
         <button className="btn">Login</button>
-        <button className="btn">Get Started</button>
+        <button className="btn" onClick={() => setView("products")}>Get Started</button>
       </div>
     </nav>
   );

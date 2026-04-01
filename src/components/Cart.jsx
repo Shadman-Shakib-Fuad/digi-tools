@@ -1,20 +1,37 @@
-const Cart = ({ cart }) => {
-  const total = cart.reduce((acc,item)=>acc+item.price,0);
+const Cart = ({ cart, clearCart, setView }) => {
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+
   return (
-    <section className="container" style={{padding:"80px 0"}}>
-      <h2 style={{textAlign:"center"}}>Your Cart</h2>
-      {cart.length===0 ? <p style={{textAlign:"center"}}>Cart is empty</p> :
-        <div style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"25px", marginTop:"20px"}}>
-          {cart.map((item,index)=>
-            <div key={index} className="card" style={{textAlign:"center"}}>
-              <img src={item.img} style={{width:"60px"}}/>
+    <section className="container" style={{ padding: "80px 0" }}>
+      <h2>Your Cart</h2>
+
+      <div style={{ margin: "20px 0" }}>
+        <button className="btn btn-outline" onClick={() => setView("products")}>
+          Back to Products
+        </button>
+      </div>
+
+      {cart.length === 0 ? (
+        <p>No items in cart</p>
+      ) : (
+        cart.map((item, index) => (
+          <div key={index} className="card" style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "15px" }}>
+            <img src={item.img} style={{ width: "60px" }} />
+            <div>
               <h3>{item.title}</h3>
               <p>${item.price}</p>
             </div>
-          )}
-        </div>
-      }
-      <h3 style={{textAlign:"center", marginTop:"30px"}}>Total: ${total}</h3>
+          </div>
+        ))
+      )}
+
+      <h3 style={{ marginTop: "20px" }}>Total: ${total}</h3>
+
+      {cart.length > 0 && (
+        <button className="btn btn-primary" style={{ marginTop: "15px" }} onClick={clearCart}>
+          Clear Cart
+        </button>
+      )}
     </section>
   );
 };
